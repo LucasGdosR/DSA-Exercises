@@ -30,10 +30,15 @@ public class UnionFind {
     }
 
     public int find(int p) {
+        List<Integer> compressionList = new ArrayList<>();
         while (p != id[p]) {
-            id[p] = id[id[p]];
+            compressionList.add(p);
             p = id[p];
         }
+
+        for (Integer e : compressionList)
+            id[e] = p;
+
         return p;
     }
 
